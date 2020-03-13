@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Article Summarizer`,
-    description: `Summarizer articles in ordre to get more information in less time.`,
+    title: `Text summarizer`,
+    description: `Summarizer text in order to get more information in less time.`,
     author: `@V&V`,
   },
   plugins: [

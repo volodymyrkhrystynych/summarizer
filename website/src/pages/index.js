@@ -2,15 +2,10 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+import article from "../components/article"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
-	const [getter, setter] = React.useState({ text: "" })
-	const buttonHandler = event => {
-		event.preventDefault()
-		console.log(getter)
-	}
 	return (
 		<Layout>
 			<SEO title="Home" />
@@ -18,24 +13,7 @@ const IndexPage = () => {
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles
 			</p>
-			<Link to="/page-2/">Go to page 2</Link>
-			<form
-				onSubmit={event => {
-					event.preventDefault()
-					console.log(getter.text)
-				}}
-			>
-				<label>
-					Text in:
-					<textarea
-						type="text"
-						name="input"
-						value={getter.text}
-						onChange={event => setter({ text: event.target.value })}
-					/>
-				</label>
-				<button>Click me</button>
-			</form>
+			<article/>
 		</Layout>
 	)
 }

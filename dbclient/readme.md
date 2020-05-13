@@ -1,7 +1,7 @@
 # Configure WSL:Ubuntu to run .net core and DynamoDB with aws client
 All this can be done from Visual Studio code terminal window
 
-## 1. install .net
+## 1. Install .net
 goto home directory
 ```
 cd
@@ -14,14 +14,14 @@ run install script
 ```
 ./dotnet-install.sh
 ```
-## 2. update .profile (include next lines)
+## 2. Update .profile (include next lines)
 set PATH so it includes dotnet if it exists
 ```
 if [ -d "$HOME/.dotnet" ] ; then
     PATH="$HOME/.dotnet:$PATH"
 fi
 ```
-## 3. install aws client
+## 3. Install aws client
 goto home directory
 ```
 cd
@@ -37,13 +37,13 @@ sudo ./aws/install
 ```
 aws configure
 ```
-## 5. install java
+## 5. Install java
 ```
 apt-get update && apt-get upgrade
 apt-get install default-jdk
 ```
-## 6. install DynamoDB
-[How to install DynamoDb on local Ubuntu Development](https://garywoodfine.com/how-to-install-dynamodb-on-local-ubuntu-development/)
+## 6. Install DynamoDB
+[How to install DynamoDb on local Ubuntu Development](https://garywoodfine.com/how-to-install-dynamodb-on-local-ubuntu-development/)<br>
 Create a hidden folder in your home directory
 ```
 mkdir ./dynamolocal
@@ -74,7 +74,7 @@ Optional once the file is uncompress delete the tar
 rm -f dynamodb_local_latest.tar.gz 
 ```
 
-## 7. start DynamoDB
+## 7. Start DynamoDB
 ```
 java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 ```
@@ -83,6 +83,6 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 ```
 http://localhost:8000/shell/)
 ```
-Check sample code
-[AWS SDK for .NET Samples](https://github.com/awslabs/aws-sdk-net-samples)
+Check sample code<br>
+[AWS SDK for .NET Samples](https://github.com/awslabs/aws-sdk-net-samples)<br>
 [LowLevelDotNetItemCRUD](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetItemCRUD.html)

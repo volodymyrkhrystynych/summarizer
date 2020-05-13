@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.Model;
-using Amazon.DynamoDBv2.DocumentModel;
-
-namespace dynamodb
+namespace dbclient
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            // connect
-            // create table
-            // upload data
-            Console.WriteLine("done");
+            try{
+                // connect
+                var dclient = new DClient();
+
+                dclient.createClient(true);
+
+                // create table
+                await dclient.CreatingTable_async(Requests.Summaries());
+
+                // upload data
+                Console.WriteLine("done");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

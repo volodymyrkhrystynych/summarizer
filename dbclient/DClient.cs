@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
@@ -132,6 +133,62 @@ namespace dbclient
             // Report the status of the new table...
             Console.WriteLine("     Status of the new table: '{0}'.", response.TableDescription.TableStatus);
             return (true);
+        }
+
+
+        /*--------------------------------------------------------------------------
+        *     LoadingData_async
+        *--------------------------------------------------------------------------*/
+        public Amazon.DynamoDBv2.DocumentModel.Table LoadTable(string tableName)
+        {
+            return Amazon.DynamoDBv2.DocumentModel.Table.LoadTable(client, tableName);
+        }
+
+        /*--------------------------------------------------------------------------
+        *                             ReadJsonMovieFile_async
+        *--------------------------------------------------------------------------*/
+        public async Task<Newtonsoft.Json.Linq.JArray> ReadJsonFile_async(string JsonMovieFilePath)
+        {
+            try
+            {
+                using(var sr = new StreamReader(JsonMovieFilePath))
+                using(var jtr = new Newtonsoft.Json.JsonTextReader(sr))
+                {
+                    var obj = await Newtonsoft.Json.Linq.JToken.ReadFromAsync(jtr);
+                    return (Newtonsoft.Json.Linq.JArray)obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"ERROR: could not read the file!\n          Reason: {ex.ToString()}.");
+            }
+        }
+
+        /*--------------------------------------------------------------------------
+         *                LoadJsonMovieData_async
+         *--------------------------------------------------------------------------*/
+        public async Task LoadJsonData_async(
+                        Amazon.DynamoDBv2.DocumentModel.Table table, 
+                        Newtonsoft.Json.Linq.JArray array)
+        {
+            var n = Math.Max(array.Count, 99);
+            Console.WriteLine("     -- Starting to load {0:#,##0} records into the {1} table ...", array.Count, table.TableName);
+
+            for (int i = 0; i < array.Count; i++)
+            {
+                try
+                {
+                    string itemJson = array[i].ToString();
+                    var doc = Amazon.DynamoDBv2.DocumentModel.Document.FromJson(itemJson);
+                    Task putItem = table.PutItemAsync(doc);
+                    await putItem;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Could not write the movie record #{i:#,##0}, because:\n       {ex.ToString()}");
+                }
+            }
+            Console.WriteLine("\n     -- Finished writing all records to DynamoDB!");
         }
     }
 }

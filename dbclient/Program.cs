@@ -30,7 +30,7 @@ namespace dbclient
 
                 // upload data
                 Console.WriteLine("  -- Reading the data from a JSON file...");
-                var array = await dclient.ReadJsonFile_async("../.demo/summaries.json");
+                var array = await dclient.ReadJsonFile_async("./summaries.json");
                 if (array != null){
                     await dclient.LoadJsonData_async(table, array);
                 }

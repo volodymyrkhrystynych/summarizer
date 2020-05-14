@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
+using Amazon.DynamoDBv2.DocumentModel;
 
 namespace dbclient
 {
@@ -44,20 +45,33 @@ namespace dbclient
                 {
                     new KeySchemaElement
                     {
-                        AttributeName = "title",
+                        AttributeName = "pubDate",
                         KeyType = KeyType.HASH
                     },
                     new KeySchemaElement
                     {
-                        AttributeName = "pubDate",
+                        AttributeName = "title",
                         KeyType = KeyType.RANGE
                     }
                 },
                 AttributeDefinitions = new List<AttributeDefinition>
                 {
-                    new AttributeDefinition { AttributeName = "title", AttributeType = ScalarAttributeType.S },
-                    new AttributeDefinition { AttributeName = "pubDate", AttributeType = ScalarAttributeType.S }
+                    new AttributeDefinition { AttributeName = "pubDate", AttributeType = ScalarAttributeType.S },
+                    new AttributeDefinition { AttributeName = "title", AttributeType = ScalarAttributeType.S }
                 }
+            };
+        }
+
+        // Querying a Global Secondary Index
+        // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html#GSI.Querying
+        public static QueryOperationConfig pubDate(string date, int limit = 1)
+        {
+            var filter = new QueryFilter();
+            filter.AddCondition("pubDate", QueryOperator.Equal, date);
+            return new QueryOperationConfig
+            {
+                Filter = filter,
+                Limit = limit
             };
         }
     }

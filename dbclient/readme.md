@@ -22,6 +22,8 @@ if [ -d "$HOME/.dotnet" ] ; then
 fi
 ```
 reload bash's .profile without logging out
+
+or disconnect from the client in order for it to automatically load .profile
 ```
 $ source ~/.profile
 ```

@@ -82,6 +82,8 @@ $ rm -f dynamodb_local_latest.tar.gz
 
 ## 7. Start DynamoDB
 ```
+$ cd
+$ cd dynamolocal
 $ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 ```
 
@@ -92,3 +94,17 @@ http://localhost:8000/shell/)
 Check sample code<br>
 [AWS SDK for .NET Samples](https://github.com/awslabs/aws-sdk-net-samples)<br>
 [LowLevelDotNetItemCRUD](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetItemCRUD.html)
+
+## 9. Install node
+```
+$ cd
+$ sudo apt install nodejs
+$ node -v or node –version
+$ sudo apt install npm
+$ npm -v or npm –version
+```
+
+## 10. Install gatsby
+```
+sudo npm i -g gatsby-cli
+```

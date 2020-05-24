@@ -45,8 +45,8 @@ $ aws configure
 ```
 ## 5. Install java
 ```
-$ apt-get update && apt-get upgrade
-$ apt-get install default-jdk
+$ sudo apt-get update && apt-get upgrade
+$ sudo apt install default-jre
 ```
 ## 6. Install DynamoDB
 [How to install DynamoDb on local Ubuntu Development](https://garywoodfine.com/how-to-install-dynamodb-on-local-ubuntu-development/)<br>

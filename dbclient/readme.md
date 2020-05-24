@@ -123,5 +123,5 @@ npm --version
 ```
 ## 10. Install gatsby
 ```
-sudo npm i -g gatsby-cli
+npm i -g gatsby-cli
 ```

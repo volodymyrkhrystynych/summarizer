@@ -89,7 +89,7 @@ $ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 
 ## 8. Open DynamoDB Web Shell 
 ```
-http://localhost:8000/shell/)
+http://localhost:8000/shell/
 ```
 Check sample code<br>
 [AWS SDK for .NET Samples](https://github.com/awslabs/aws-sdk-net-samples)<br>
@@ -103,7 +103,16 @@ $ node -v or node –version
 $ sudo apt install npm
 $ npm -v or npm –version
 ```
-
+or [Set up your Node.js development environment with WSL 2](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2)
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+command -v nvm
+```
+should return 'nvm'
+```
+nvm ls
+nvm install node
+```
 ## 10. Install gatsby
 ```
 sudo npm i -g gatsby-cli

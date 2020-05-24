@@ -113,6 +113,14 @@ should return 'nvm'
 nvm ls
 nvm install node
 ```
+Verify that Node.js is installed and the currently default version with:
+```
+node --version
+```
+Then verify that you have npm as well, with: 
+```
+npm --version
+```
 ## 10. Install gatsby
 ```
 sudo npm i -g gatsby-cli

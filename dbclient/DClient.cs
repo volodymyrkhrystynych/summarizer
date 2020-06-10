@@ -38,13 +38,13 @@ namespace dbclient
             if (useDynamoDBLocal)
             {
                 // First, check to see whether anyone is listening on the DynamoDB local port
-                // (by default, this is port 8000, so if you are using a different port, modify this accordingly)
+                // (by default, this is port 9000, so if you are using a different port, modify this accordingly)
                 bool localFound = false;
                 try
                 {
                     using (var tcp_client = new TcpClient())
                     {
-                        var result = tcp_client.BeginConnect("localhost", 8000, null, null);
+                        var result = tcp_client.BeginConnect("localhost", 9000, null, null);
                         localFound = result.AsyncWaitHandle.WaitOne(3000); // Wait 3 seconds
                         tcp_client.EndConnect(result);
                     }
@@ -55,13 +55,13 @@ namespace dbclient
                 }
                 if (!localFound)
                 {
-                    throw new Exception("DynamoDB Local does not appear to have been started..., (checked port 8000)");
+                    throw new Exception("DynamoDB Local does not appear to have been started..., (checked port 9000)");
                 }
 
                 // If DynamoDB-Local does seem to be running, so create a client
                 Console.WriteLine("  -- Setting up a DynamoDB-Local client (DynamoDB Local seems to be running)");
                 AmazonDynamoDBConfig ddbConfig = new AmazonDynamoDBConfig();
-                ddbConfig.ServiceURL = "http://localhost:8000";
+                ddbConfig.ServiceURL = "http://localhost:9000";
                 // todo use file
                 var credentials = new Amazon.Runtime.BasicAWSCredentials("fakeAccessKeyId", "fakeAWSSecretAccessKey");
                 client = new AmazonDynamoDBClient(credentials, ddbConfig);

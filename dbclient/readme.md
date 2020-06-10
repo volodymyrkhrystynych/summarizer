@@ -89,7 +89,7 @@ $ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
 
 ## 8. Open DynamoDB Web Shell 
 ```
-http://localhost:8000/shell/
+http://localhost:9000/shell/
 ```
 Check sample code<br>
 [AWS SDK for .NET Samples](https://github.com/awslabs/aws-sdk-net-samples)<br>

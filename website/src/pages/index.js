@@ -6,6 +6,8 @@ import Article from "../components/article"
 import SEO from "../components/seo"
 import AWS from "aws-sdk"
 
+import summaries from "../../../dbclient/summaries"; 
+
 const IndexPage = () => {
 
 	AWS.config.update({
@@ -51,6 +53,23 @@ const IndexPage = () => {
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles.
 			<Article/>
+			<div>
+			{
+				summaries.map((summary, _) => {
+					return (
+						<div>
+							<div>
+								<a href={summary.url}>{summary.title}</a>
+							</div>
+							<div>
+								<span>{summary.pubDate}</span>
+								<p>{summary.summary}</p>
+							</div>
+						</div>
+					);
+				})
+			}
+			</div> 			
 		</Layout>
 		</div>
 	)

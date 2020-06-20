@@ -1,9 +1,9 @@
 import React from "react"
-// import { Link } from "gatsby"
+import { Link } from "gatsby"
 
-//import Layout from "../components/layout"
-// import Article from "../components/article"
-// import SEO from "../components/seo"
+import Layout from "../components/layout"
+import Article from "../components/article"
+import SEO from "../components/seo"
 import AWS from "aws-sdk"
 
 const IndexPage = () => {
@@ -46,12 +46,12 @@ const IndexPage = () => {
 
 	return (
 		<div>
-		{/* <Layout> */}
-			{/* <SEO title="Home" /> */}
+		<Layout>
+			<SEO title="Home" />
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles.
-			{/* <Article/> */}
-		{/* </Layout> */}
+			<Article/>
+		</Layout>
 		</div>
 	)
 }

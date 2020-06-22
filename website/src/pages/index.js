@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Article from "../components/article"
 import SEO from "../components/seo"
 import AWS from "aws-sdk"
+import Summary from "../components/summary"
 
 import summaries from "../../../dbclient/summaries"; 
 
@@ -50,22 +50,14 @@ const IndexPage = () => {
 		<div>
 		<Layout>
 			<SEO title="Home" />
+			<Link to="/article/">New Article</Link>
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles.
-			<Article/>
 			<div>
 			{
 				summaries.map((summary, _) => {
 					return (
-						<div>
-							<div>
-								<a href={summary.url}>{summary.title}</a>
-							</div>
-							<div>
-								<span>{summary.pubDate}</span>
-								<p>{summary.summary}</p>
-							</div>
-						</div>
+						<Summary summary={summary}/>
 					);
 				})
 			}

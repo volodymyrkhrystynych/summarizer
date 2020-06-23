@@ -47,10 +47,8 @@ const IndexPage = () => {
 	  });
 
 	return (
-		<div>
 		<Layout>
 			<SEO title="Home" />
-			<Link to="/article/">New Article</Link>
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles.
 			<div>
@@ -63,7 +61,6 @@ const IndexPage = () => {
 			}
 			</div> 			
 		</Layout>
-		</div>
 	)
 }
 

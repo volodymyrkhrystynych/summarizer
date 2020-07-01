@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import AWS from "aws-sdk"
 import Summary from "../components/summary"
 
-import summaries from "../../../dbclient/summaries"; 
+import summaries from "../summaries"; 
 
 const IndexPage = () => {
 

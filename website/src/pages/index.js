@@ -10,41 +10,41 @@ import summaries from "../summaries";
 
 const IndexPage = () => {
 
-	AWS.config.update({
-		region: "us-west-2",
-		endpoint: "http://localhost:9000",
-		credentials: {
-		  accessKeyId: 'fakeAccessKeyId',
-		  secretAccessKey: 'fakeAWSSecretAccessKey'
-		}
-	});
+	// AWS.config.update({
+	// 	region: "us-west-2",
+	// 	endpoint: "http://localhost:9000",
+	// 	credentials: {
+	// 	  accessKeyId: 'fakeAccessKeyId',
+	// 	  secretAccessKey: 'fakeAWSSecretAccessKey'
+	// 	}
+	// });
 
-	var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+	// var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-	var params = {
-		TableName: 'Summaries',
-		KeyConditionExpression: '#attr_name = :value', // a string representing a constraint on the attribute
-		ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
-			'#attr_name': 'pubDate'
-		},
-		ExpressionAttributeValues: { // a map of substitutions for all attribute values
-		  ':value': '5-Apr-20'
-		},
-		Limit: 10, // optional (limit the number of items to evaluate)
-		ConsistentRead: false, // optional (true | false)
-		ReturnConsumedCapacity: 'NONE', // optional (NONE | TOTAL | INDEXES)
-	};
+	// var params = {
+	// 	TableName: 'Summaries',
+	// 	KeyConditionExpression: '#attr_name = :value', // a string representing a constraint on the attribute
+	// 	ExpressionAttributeNames: { // a map of substitutions for attribute names with special characters
+	// 		'#attr_name': 'pubDate'
+	// 	},
+	// 	ExpressionAttributeValues: { // a map of substitutions for all attribute values
+	// 	  ':value': '5-Apr-20'
+	// 	},
+	// 	Limit: 10, // optional (limit the number of items to evaluate)
+	// 	ConsistentRead: false, // optional (true | false)
+	// 	ReturnConsumedCapacity: 'NONE', // optional (NONE | TOTAL | INDEXES)
+	// };
 	
-	  ddb.query(params, function(err, data) {
-		if (err) {
-		  console.log("Error", err);
-		} else {
-		  //console.log("Success", data.Items);
-		  data.Items.forEach(function(element, index, array) {
-			console.log(element.Title.S + " (" + element.Subtitle.S + ")");
-		  });
-		}
-	  });
+	//   ddb.query(params, function(err, data) {
+	// 	if (err) {
+	// 	  console.log("Error", err);
+	// 	} else {
+	// 	  //console.log("Success", data.Items);
+	// 	  data.Items.forEach(function(element, index, array) {
+	// 		console.log(element.Title.S + " (" + element.Subtitle.S + ")");
+	// 	  });
+	// 	}
+	//   });
 
 	return (
 		<Layout>

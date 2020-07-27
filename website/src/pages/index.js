@@ -4,14 +4,14 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import AWS from "aws-sdk"
-import Summary from "../components/summary"
+import SummaryList from "../components/summary-list"
 
-// import summaries from "../summaries"; 
+import summaries from "../summaries"; 
 
 const IndexPage = () => {
 
 
-	const [mystate, setThisState] = React.useState('');
+	const [mystate, setThisState] = React.useState();
 
 	const callApi = async () => {
 		const response = await fetch('https://azfzpno1fl.execute-api.us-east-2.amazonaws.com/summariesV1/summaries',
@@ -31,21 +31,25 @@ const IndexPage = () => {
 	useEffect( () => {
 		console.log('hello');
 		callApi()
-		  .then(res => setThisState(res.express))
+		.then(res => {console.log('res');console.log(res);setThisState(res);})
 		  .catch(err => console.log(err));
+
 	  }, []);
 
-	console.log(mystate);
+	console.log('summaries');
+	console.log(summaries);
 	return (
 		<Layout>
 			<SEO title="Home" />
 				This is going to be a website that uses machine learning and natural
 				language processing in order to summarizer articles.
 			<div>
-			
+				{mystate ? <SummaryList summaries={mystate}/> : null}	
 			</div> 			
 		</Layout>
 	)
 }
 
 export default IndexPage
+
+				// {mystate.Items}	
